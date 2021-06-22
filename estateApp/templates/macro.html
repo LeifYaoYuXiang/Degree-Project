@@ -1,0 +1,328 @@
+{# house information displayed in the index page 姚宇翔负责#}
+{#<<<<<<< HEAD#}
+{#{% macro house_item_display(id, image_url, house_name, address, price, user_id, house_inspector_name) %}#}
+{#    <div class="col-xl-3 col-lg-3 col-md-6">#}
+{% macro house_item_display(id, image_url, house_name, address, price, user_id,house_inspector_name, class) %}
+    <div class="col-xl-3 col-lg-3 col-md-6 {{class}}">
+        <div class="course-cat-wrapper mb-30">
+            <div class="course-cat-img">
+                <a href="{{ url_for('house_item', id=id) }}">
+                        <img src="{{ url_for('static', filename=image_url) }}" alt="">
+                    </a>
+            </div>
+            <div class="course-cat-text" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">
+                <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><a href="{{ url_for('house_item', id=id) }}">{{ house_name }}</a></h4>
+                <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ address }}</p>
+                <div class="course-cat-meta">
+                    <span><i class="far fa-users"></i> ￥{{ price }}/㎡</span>
+                    <span><i class="far fa-book"></i> <a href="{{ url_for('house_item', id=id) }}">{{ house_inspector_name }}</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# house inspector displayed in the index page 姚宇翔负责 #}
+{% macro house_inspector_display(id, image_url, name, tel) %}
+    <div class="col-xl-3 col-lg-3 col-md-6">
+        <div class="team-wrapper mb-30">
+            <div class="team-img pos-rel">
+                <div class="fix">
+                    <a href="{{ url_for('house_inspector_item', id=id) }}"><img src="{{ url_for('static', filename=image_url) }}" alt=""></a>
+                </div>
+                <div class="team-02-icon">
+                    <div class="inner-team-icon pos-rel">
+                        <div class="team-icon">
+                            <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="google" href="#"><i class="fab fa-youtube"></i></a>
+                            <a class="fb" href="#"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        <a href="#"><i class="fal fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-text">
+                <h4><a href="{{ url_for('house_inspector_item', id=id) }}">{{ name }}</a></h4>
+                <span><i class="far fa-book"></i>  Tel : {{ tel }}</span>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# house information displayed in the index page 姚宇翔负责 #}
+{% macro house_info_display(index, time, title) %}
+    <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="blog-wrapper mb-30 pos-rel">
+            <div class="blog-img">
+                <a href="{{ url_for('house_info_item', index=index) }}">
+                    <img src="{{ url_for('static', filename='front_end/img/blog/01.jpg') }}" alt="">
+                </a>
+            </div>
+            <div class="blog-text">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> <a
+                            href="{{ url_for('house_info_item', id=id) }}">{{ time }}</a></span>
+                </div>
+                <h4><a href="{{ url_for('house_info_item', index=index) }}">{{ title }}</a></h4>
+                <div class="blog-button">
+                    <a href="{{ url_for('house_info_item', index=index) }}"><i class="far fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# house information displayed in the new house list page 孙一鸣负责 #}
+{% macro house_list_display(id, time, title, graph) %}
+    <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="blog-wrapper mb-30 pos-rel">
+            <div class="blog-img">
+                {#  跳转具体页面 & 房源图片 #}
+                <a href="{{ url_for('house_info_item', id=id) }} "><img id="news_item_random" src="{{ graph }}" alt=""></a>
+            </div>
+            <div class="blog-text">
+                <div class="blog-meta">
+                    {#  跳转具体页面 & 发布日期 #}
+                    <span><i class="far fa-calendar-alt"></i> <a
+                            href="{{ url_for('house_info_item', id=id) }}">{{ time }} </a></span>
+                </div>
+                {#  跳转具体页面  & 房源标题 #}
+                <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><a
+                        href="{{ url_for('house_info_item', id=id) }}">{{ title }}</a></h4>
+                <div class="blog-button">
+                    {# 跳转具体页面  #}
+                    <a href="{{ url_for('house_info_item', id=id) }}"><i class="far fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+
+{# house information displayed in the new house list page 孙一鸣负责 #}
+{% macro house_list_display_internal(id, time, title, graph) %}
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="blog-wrapper mb-30 pos-rel">
+            <div class="blog-img">
+                {#  跳转具体页面 & 房源图片 #}
+                <a href="{{ url_for('house_info_item', id=id) }} "><img id="news_item_random" src="{{ graph }}" alt=""></a>
+            </div>
+            <div class="blog-text white-bg">
+                <div class="blog-meta">
+                    {#  跳转具体页面 & 发布日期 #}
+                    <span><i class="far fa-calendar-alt"></i> <a
+                            href="{{ url_for('house_info_item', id=id) }}">{{ time }} </a></span>
+                </div>
+                {#  跳转具体页面  & 房源标题 #}
+                <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><a
+                        href="{{ url_for('house_info_item', id=id) }}">{{ title }}</a></h4>
+                <div class="blog-button">
+                    {# 跳转具体页面  #}
+                    <a href="{{ url_for('house_info_item', id=id) }}"><i class="far fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro personal_appointment_info(house_index, appointment_date, appointment_house, appointment_content) %}
+{#    <div class="input-text">#}
+        <div>
+            <b>Appointment Date: </b>{{ appointment_date }}<br>
+            <b>House Appointed: </b><a style="text-decoration: underline; color: #ea5822" href="{{ url_for('house_item', id=house_index) }}">{{ appointment_house }}</a><br>
+            <b>Attached Message: </b>{{ appointment_content }}<br>
+        </div>
+        <hr>
+{#    </div>#}
+{% endmacro %}
+
+
+{% macro personal_messages(message_content, message_year, message_month, message_date, house_inspector_name, replied_year, replied_month, replied_date, replied_content) %}
+    <div class="card card-02">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                    {{ message_content }} ({{ message_year }}/{{ message_month }}/{{ message_date }})
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+             data-parent="#accordion">
+            <div class="card-body">
+                <p class="mt-15">(<b>{{ house_inspector_name }}:{{ replied_year }}/{{ replied_month }}/{{ replied_date }}</b>){{ replied_content }}</p>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# customers display 孙一鸣负责 #}
+{% macro customer_list_display(id, avatar_hash, name, email, phone) %}
+<div class="col-lg-4">
+    <div class="contact-box">
+{#        <a href="profile.html">#}
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" class="img-circle m-t-xs img-responsive" src="{{ avatars.gravatar(avatar_hash, size=150, default="wavatar") }}" alt="">
+{#                    <div class="m-t-xs font-bold">Graphics designer</div>#}
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <h3><strong>{{name}}</strong></h3>
+                <br>
+                <h3><i class="fa fa-map-marker"></i>Email: </h3>
+                <h4>{{email}}</h4>
+                <br>
+                <h3><i class="fa fa-map-marker"></i>Phone Number:</h3>
+                <h4>{{phone}}</h4>
+
+            </div>
+            <div class="clearfix"></div>
+{#        </a>#}
+    </div>
+</div>
+{% endmacro %}
+
+{# mail item display 倪莎负责 #}
+{% macro mail_item_display_message(id, buyer_name, message_date, message_month, message_year, buyer_phone, buyer_email, content, status) %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    {% if status == 0 %}
+                        <a class="btn btn-white btn-sm" onclick="show()"><i class="fa fa-reply"></i> Reply</a>
+                    {% endif %}
+                    <a href="{{ url_for('mail_list') }}" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> Back to list</a>
+{#                    <a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Print email"><i class="fa fa-print"></i> </a>#}
+                </div>
+                <h2>
+                    View Message
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+
+
+                    <h3>
+                        <span class="font-noraml">From Client: </span>{{ buyer_name }}
+                    </h3>
+                    <h5>
+                        <span class="pull-right font-noraml"> {{ message_date }} / {{ message_month }} / {{ message_year }}</span>
+                        <span class="font-noraml">Tel: </span>{{ buyer_phone }}<br>
+                        <span class="font-noraml">Email: </span>{{ buyer_email }}
+                    </h5>
+                </div>
+            </div>
+            <div class="mail-box">
+                <div class="mail-body">
+                    <p class="text-navy">
+                        {{ content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function show(){
+document.getElementById("reply_box").style.display="block";
+{#document.getElementById("div2").style.display="none";#}
+};
+</script>
+{% endmacro %}
+
+{# mail item display 倪莎负责 #}
+{% macro mail_item_display_appointment(id, buyer_name, appointment_date, appointment_month, appointment_year, buyer_phone, buyer_email, content,house_type, house_name, house_province, house_city, house_position, house_index, house_price, status, read_form, unread_form) %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg12 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    <form class="" action="" method="post" novalidate>
+                        {% if read_form %}
+                            {{ read_form.hidden_tag() }}
+                            {{ read_form.submit(class="btn btn-sm btn-primary", text='Mark as read') }}
+                        {% endif %}
+                        {% if unread_form %}
+                            {{ unread_form.hidden_tag() }}
+                            {{ unread_form.submit(class="btn btn-white btn-sm", text='Unread') }}
+                        {% endif %}
+                        <a href="{{ url_for('mail_list') }}" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> Back to list</a>
+                    </form>
+                    {#                    <a class="btn btn-sm btn-primary" id="notify"><i class="fa fa-check"></i> Mark as read</a>#}
+                </div>
+                <h2>
+                    View Appointment
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+
+                    <h3>
+                        <span class="font-noraml">From Client: </span>{{ buyer_name }}
+                    </h3>
+                    <h5>
+{#                        <span class="pull-right font-noraml"> {{ message_date }} / {{ message_month }} / {{ message_year }}</span>#}
+                        <span class="font-noraml">Tel: </span>{{ buyer_phone }}<br>
+                        <span class="font-noraml">Email: </span>{{ buyer_email }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg12 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                </div>
+                <h2>
+                    Appointment Details
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+                    <h3>
+                        <span class="font-noraml">Appointment Date: </span>{{ appointment_month }} / {{ appointment_date }} / {{ appointment_year }}
+                    </h3>
+                </div>
+                <div class="mail-tools tooltip-demo m-t-md">
+                    <h3>
+                        <span class="font-noraml">House Appointed: </span><a href="{{ url_for('house_item', id=house_type~house_index) }}"><b>{{ house_name }}</b></a>
+                    </h3>
+{#                    <h5>#}
+{#                        <span class="font-noraml">House ID : </span>{{ house_index }}#}
+{#                        <br><span class="font-noraml">Price : </span>￥{{ house_price }}/㎡<br>#}
+{#                        <span class="font-noraml">Position : </span>{{ house_position }}, {{ house_city }}, {{ house_province }}<br>#}
+{#                    </h5>#}
+                </div>
+                <div class="mail-tools tooltip-demo m-t-md">
+                    <h3>
+                        <span class="font-noraml">Appointment Content: </span>
+                    </h3>
+                    <div class="mail-box">
+                        <div class="mail-body">
+                            <p class="text-navy">
+                                {{ content }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{# House Inspector界面的信息展示,展示个人的负责的整体房间 #}
+{% macro house_info_list(id, type, province, city, house_name, available_weekday, available_start_hour, available_end_hour) %}
+    <tr class="read">
+        <td class="mail-ontact"><a href="{{ url_for('house_info_item_staff', type=type, id=id) }}">{{ province }}:{{ city }}</a>
+            {% if type == 0 %}
+                <span class="label label-warning pull-right">New House</span>
+            {% else %}
+                 <span class="label label-primary pull-right">2nd Hand House</span>
+            {% endif %}
+        </td>
+        <td class="mail-subject"><a href="{{ url_for('house_info_item_staff', type= type, id=id) }}">{{ house_name }}</a></td>
+        <td class=""></td>
+        <td class="text-right mail-date">{{ available_weekday }}:{{ available_start_hour }}-{{ available_end_hour }}</td>
+    </tr>
+{% endmacro %}

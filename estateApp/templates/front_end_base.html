@@ -1,0 +1,211 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>COBE|China OxBee Estate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='front_end/img/favicon.ico') }}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/metisMenu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/meanmenu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front_end/css/main.css') }}">
+
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+<!-- header-start -->
+<header class="header-transparent">
+    <div id="sticky-header" class="main-menu-area menu-padding pl-55 pr-55">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-xl-2 col-lg-7 col-md-6 col-8">
+                    <div class="logo">
+                        <a href="{{ url_for('index') }}"><img
+                                src="{{ url_for('static', filename='front_end/img/logo/logo.png') }}" alt=""/></a>
+                    </div>
+                </div>
+
+                <div class="col-xl-7 d-none d-xl-block">
+                    <div class="main-menu text-left ml-15">
+                        <nav id="mobile-menu">
+                            <ul>
+                                <li><a href="{{ url_for('index') }}">Home</a></li>
+                                <li><a href="{{ url_for('search_result', types='1') }}">New House</a></li>
+                                <li><a href="{{ url_for('search_result', types='2') }}"> Second Hand House</a></li>
+                                <li><a href="{{ url_for('house_info_list') }}">House News</a></li>
+                                <li><a href="{{ url_for('house_inspector_list') }}">Contact</a></li>
+                                <li><a href="{{ url_for('developer') }}">Developer</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-5 col-md-6 col-4">
+                    <div class="header-right d-sm-flex align-items-center justify-content-end">
+                        {% if login_status == False %}
+                            <div class="header-sing d-none d-md-inline-block">
+                                <a href="{{ url_for('login') }}"> <i class="far fa-user-circle"></i>Log in</a>
+                            </div>
+                        {% else %}
+                            {% if session_role == 0 %}
+                                <div class="header-sing d-none d-md-inline-block">
+                                    <a href="{{ url_for('personal_page') }}"> <i class="far fa-user-circle"></i>My Account</a>
+                                </div>
+                                {% block personal_logout %}
+
+                                {% endblock %}
+                            {% else %}
+                                <div class="header-sing d-none d-md-inline-block">
+                                    <a href="{{ url_for('personal_page_staff') }}"> <i class="far fa-user-circle"></i>Admin
+                                        Page</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        <div class="hamburger-menu menu-bar info-bar">
+                            <a href="#"><img src="{{ url_for('static', filename='front_end/img/icon/bar.png') }}"
+                                             alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-start -->
+
+<!-- slide-bar start -->
+<aside class="slide-bar">
+    <div class="close-mobile-menu">
+        <a href="javascript:void(0);"><i class="fas fa-times"></i></a>
+    </div>
+
+    <!-- offset-sidebar start -->
+    <div class="offset-sidebar">
+        <div class="offset-widget mb-40">
+            <div class="info-widget">
+                <h4 class="offset-title mb-20">About Us</h4>
+                <p class="mb-30">
+                    We are the best real estate intermediary in China, providing customers with the best purchase
+                    experience.
+                </p>
+                <a class="c-btn btn-round-02" href="{{ url_for('house_inspector_list') }}">Contact Us</a>
+            </div>
+        </div>
+        <div class="offset-widget mb-30 pr-10">
+            <div class="info-widget info-widget2">
+                <h4 class="offset-title mb-20">Contact Info</h4>
+                <p><i class="fal fa-address-book"></i>ChaoYang District, Beijing, China</p>
+                <p><i class="fal fa-phone"></i> +012 (345) 6789 </p>
+                <p><i class="fal fa-envelope-open"></i> contact@cobe.com </p>
+            </div>
+        </div>
+    </div>
+    <!-- offset-sidebar end -->
+
+    <!-- side-mobile-menu start -->
+    <nav class="side-mobile-menu">
+        <ul id="mobile-menu-active">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('search_result', types='1') }}">New House</a></li>
+            <li><a href="{{ url_for('search_result', types='2') }}">2nd Hand House</a></li>
+            <li><a href="{{ url_for('house_info_list') }}">House Info</a></li>
+            <li><a href="{{ url_for('house_inspector_list') }}">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+        </ul>
+    </nav>
+
+    <!-- side-mobile-menu end -->
+</aside>
+<div class="body-overlay"></div>
+<!-- slide-bar end -->
+
+<main>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block front_end_main_content %}
+
+        {% endblock %}
+    </div>
+
+    <footer class="footer-area pt-65 pb-45"
+            data-background="{{ url_for('static', filename='front_end/img/bg/fot-01-bg.png') }}">
+        <div class="container">
+{#            <div class="row mb-55 no-gutters align-items-center">#}
+{#                <div class="col-xl-4 col-lg-4 col-md-4 col-12">#}
+{##}
+{#                </div>#}
+{#                <div class="col-xl-8 col-lg-8 col-md-8 col-12">#}
+{#                    <div class="footer-social-icon text-right pb-70">#}
+{#                        <a class="fot-fb active pb-70" href="#"><i class="fab fa-facebook-f"></i> Facebook</a>#}
+{#                        <a class="fot-twitter pb-70" href="#"><i class="fab fa-twitter"></i> Twitter</a>#}
+{#                        <a class="fot-google pb-70" href="#"><i class="fab fa-youtube"></i> Youtube</a>#}
+{#                        <a class="fot-insta pb-70" href="#"><i class="fab fa-instagram"></i> Instagram</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="copyright-area mt-15 text-center pt-20 pb-20">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="copyright-text">
+                            <p>Copyright © 2020 <a href="#">OxBee</a> All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<!-- JS here -->
+<script src="{{ url_for('static', filename='front_end/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/isotope.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/metisMenu.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.meanmenu.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/ajax-form.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/waypoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.counterup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.scrollUp.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.nice-select.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/jquery.easypiechart.js') }}"></script>
+<script src="{{ url_for('static', filename='front_end/js/main.js') }}"></script>
+
+{% block js %}
+{% endblock %}
+</body>
+
+</html>

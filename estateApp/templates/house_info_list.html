@@ -1,0 +1,64 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+
+{% block front_end_main_content %}
+        <section class="page-title-area" style="background-image: url('../static/front_end/img/bg/page-title-bg-01.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 offset-xl-1">
+                        <div class="page-title text-center">
+                            <h1>{{title_content}}</h1>
+                            <div class="breadcrumb">
+                                <ul class="breadcrumb-list">
+                                    <li><a href="{{url_for('index')}}">Home <i class="far fa-chevron-right"></i></a></li>
+                                    <li><a class="active" href="#">{{subtitle}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="search-area white-bg" style="margin-bottom: 20px">
+                                <form class="slider-search-form" method="POST" id="search_form">
+                                    <input type="text" placeholder="Search News" name="query" required>
+                                    <button type="submit"><i class="far fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+{#房屋展示模块#}
+        <div class="blog-area pt-130 pb-100 bg-light">
+            <div class="container">
+                <div class="section-title text-left mb-20">
+                    {% if html == 'house_info_list' %}
+                        <h2>Recommend for you:</h2>
+                    {% elif html == 'news_ir' %}
+                        <h2><b>{{ list_length }}</b> results were found:</h2>
+                    {% endif %}
+                </div>
+
+                <div class="row">
+{#                {% for r in url_list %}#}
+{#                    {{ macro.house_list_display(graph=r) }}#}
+{#                {% endfor %}#}
+                {% for house_info_item in house_info_list %}
+                    {{ macro.house_list_display(id=house_info_item[1],
+                                                title=house_info_item[2],
+                                                time=house_info_item[3],
+                                                graph=house_info_item[0]) }}
+                {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+{% endblock %}

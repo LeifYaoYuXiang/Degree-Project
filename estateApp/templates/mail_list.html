@@ -1,0 +1,80 @@
+{% extends 'back_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block back_end_main_content %}
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-12 animated fadeInRight">
+                <div class="mail-box-header">
+                    <h2>
+                        Inbox
+                    </h2>
+                </div>
+                <div class="mail-box">
+
+                    <table class="table table-hover table-mail">
+                        <tbody>
+                        {#                        {% for customer in customers %}#}
+                        {#                            {% if customer.appointments %}#}
+                        {% for appointment, customer in appointments %}
+                            {% if appointment.status==0 %}
+                                <tr class={{ unread }}>
+                                    {% else %}
+                                <tr class={{ read }}>
+                            {% endif %}
+                        <td class="check-mail">
+                            {#                                        <input type="checkbox" class="i-checks">#}
+                        </td>
+
+                        <td class="mail-ontact">{{ customer.name }}
+                            <span class="label label-warning pull-right"><a
+                                    href="{{ url_for('mail_item', type='appointment', id=appointment.id) }}">Appointment</a></span>
+                        </td>
+
+                        <td class="mail-subject"><a
+                                href="{{ url_for('mail_item', type='appointment', id=appointment.id) }}">{{ appointment.content }}</a>
+                        </td>
+                        <td class=""></td>
+                        <td class="text-right mail-date">Appointment
+                            Date: {{ appointment.appointment_year }}/{{ appointment.appointment_month }}/{{ appointment.appointment_date }}</td>
+                        </tr>
+                        {% endfor %}
+                        {#                            {% endif %}#}
+
+                        {#                            {% if customer.messages %}#}
+                        {% for message, customer in messages %}
+                            {% if message.status==0 %}
+                                <tr class={{ unread }}>
+                                    {% else %}
+                                <tr class={{ read }}>
+                            {% endif %}
+                        <td class="check-mail">
+                            {#                                        <input type="checkbox" class="i-checks">#}
+                        </td>
+
+                        <td class="mail-contact">{{ customer.name }}
+                            <span class="label label-danger pull-right"><a
+                                    href="{{ url_for('mail_item', type='message', id=message.id) }}">Message</a></span>
+                        </td>
+
+                        <td class="mail-subject"><a
+                                href="{{ url_for('mail_item', type='message', id=message.id) }}">{{ message.content }}</a>
+                        </td>
+                        <td class=""></td>
+                        <td class="text-right mail-date">{{ message.message_year }}/{{ message.message_month }}/{{ message.message_date }}</td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: -40px">
+                    <ul class="pagination ">
+                        {{ pagination.links }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> COBE | Login </title>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link href="{{ url_for('static', filename='back_end/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='back_end/css/style.css') }}" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <h2 class="logo-name">COBE</h2>
+        </div>
+        <h3>Welcome to COBE</h3>
+        <p>We are the best real estate intermediary in China, providing customers with the best purchase experience.</p>
+
+        <form class="m-t" role="form"  method="post" novalidate >
+            {{ login_form.hidden_tag() }}
+            <div class="form-group"> {{ login_form.name(class="form-control") }} </div>
+            <div class="form-group"> {{ login_form.password(class="form-control") }} </div>
+            {{ login_form.submit(class="btn btn-primary block full-width m-b") }}
+        </form>
+        {% for message in get_flashed_messages() %}
+            <p style="color: red; font-size: 13px; text-align: center">{{ message }}</p>
+        {% endfor %}
+        <p><a href="{{ url_for('register') }}">Register My Account</a></p>
+    </div>
+</div>
+    <!-- Mainly scripts -->
+    <script src="{{ url_for('static', filename='back_end/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='back_end/js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

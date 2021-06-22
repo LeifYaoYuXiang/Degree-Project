@@ -1,0 +1,460 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+
+        ul, li, ol {
+            list-style: none;
+        }
+
+        /* 重置文本格式元素 */
+        a {
+            text-decoration: none;
+            cursor: pointer;
+            color: #333333;
+        {#font-size: 14px;#}
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .clearfix::after {
+            display: block;
+            content: '';
+            height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+
+        /*星星样式*/
+        .content {
+            width: 600px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        .title {
+            font-size: 14px;
+            background: #dfdfdf;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .block {
+            margin: 0px 0 0 0;
+            height: 21px;
+        }
+
+        .block .star_score {
+            float: left;
+        }
+
+        .star_list {
+            height: 21px;
+            margin: 50px;
+            line-height: 21px;
+        }
+
+        .block p, .block .attitude {
+            padding-left: 20px;
+            display: inline-block;
+        }
+
+        .block p span {
+            color: #C00;
+            font-size: 16px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+
+        .star_score {
+            background: url(../static/front_end/img/ratings/stark2.png);
+            width: 160px;
+            height: 21px;
+            position: relative;
+        }
+
+        .star_score a {
+            height: 21px;
+            display: block;
+            text-indent: -999em;
+            position: absolute;
+            left: 0;
+        }
+
+        .star_score a:hover {
+            background: url(../static/front_end/img/ratings/stars2.png);
+            left: 0;
+        }
+
+        .star_score a.clibg {
+            background: url(../static/front_end/img/ratings/stars2.png);
+            left: 0;
+        }
+
+        /*星星样式*/
+
+        .show_number {
+            padding-left: 0px;
+            margin: 0px 0 -2.5px 0;
+        }
+
+        .show_number li {
+            margin-right: 5px;
+        }
+
+        .atar_Show {
+            background: url(../static/front_end/img/ratings/stark2.png);
+            width: 160px;
+            height: 21px;
+            position: relative;
+            float: left;
+        }
+
+        .atar_Show p {
+            background: url(../static/front_end/img/ratings/stars2.png);
+            left: 0;
+            height: 21px;
+            width: 134px;
+        }
+
+        .show_number li span {
+            display: inline-block;
+            line-height: 21px;
+        }
+
+    </style>
+
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+{% endblock %}
+
+{% block front_end_main_content %}
+    <!-- hero-area start -->
+    <section class="hero-area pos-rel">
+
+        <div class="hero-slider">
+
+        </div>
+    </section>
+    <!-- hero-area end -->
+
+    <section class="events-area-03 pt-130 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <p id="week_number" style="display: none">{{ week_number }}</p>
+                    <p id="house_id" style="display: none">{{ house_id }}</p>
+                    <p id="house_type" style="display: none">{{ house_type_num }}</p>
+                    <div class="events-wrapper-03 d-lg-flex align-items-center justify-content-between mb-30">
+
+                        <div class="events-thumb" style="margin-left: 20px; margin-bottom: 75px">
+                            {#                            <h6>{{ house_name}}</h6>#}
+                            <img width="600" height="420"
+                                 src="{{ url_for('static', filename='image/'~(house_id%210)~'.jpg') }}">
+                        </div>
+
+                        <div class="events-contents pos-rel" style="margin-left: -37px; width: 60%;">
+                            <div class="tags">
+                                <a style="width: 0;height: 0;"
+                                   href="{{ url_for('house_inspector_item', id=inspector_id) }}">
+                                    <img style="margin-bottom: 65px; margin-top: 18px; margin-left: 14px; border-radius: 50%;"
+                                         src="{{ url_for('static', filename='front_end/img/team/0' ~ inspector_id ~ '.jpg') }}"
+                                         width="78" height="78">
+                                </a>
+                                <div style="width: 160px; text-align: center"><h5
+                                        style="margin-right: 52px;"><b>{{ inspector_name }}</b></h5></div>
+                                {#                                <h5 style="position: relative">{{ inspector_name }}</h5>#}
+                            </div>
+                            <div style="margin-bottom: 38px;">
+                                <h2 style="color: red; margin-top: 4px">¥ {{ price }}/㎡</h2>
+                                {#                                <h5>123㎡</h5>#}
+                            </div>
+                            <div class="events-meta">
+                                                            <span style="width: 100%; margin-top: 8px; ">
+{#                                                                <i class="far fa-calendar-alt"></i>{{ house_size }} &nbsp;&nbsp;&nbsp;#}
+                                                                <i class="far fa-calendar-alt"></i>{{ house_size }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <i class="fal fa-home"></i>{{ house_room }}
+{#                                                                <i class="fal fa-home"></i>test#}
+                                                                <hr style="margin-top: 8px">
+                                                            </span>
+
+
+                                <span style="width: 100%;"><span style="width: 105px; height: 0;">House Type:</span> &nbsp;<a
+                                        style="cursor:default; font-size: medium; text-transform: none; color: black;"><b> {{ house_type }}</b></a></span>
+                                <span style="width: 475px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><span style="width: 105px; height: 0;">House Name:</span> &nbsp;<a id="house_name" onclick="a()"
+                                        style="font-size: medium;text-transform: none; color: black;"><b> {{ house_name }}</b></a></span>
+                                <span style="width: 100%;"><span style="width: 105px; height: 0;">Province/City:</span> &nbsp;<a
+                                        style="cursor: default; font-size: medium; text-transform: none; color: black;"><b> {{ house_city }}</b></a></span>
+                                <span style="width: 475px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><span
+                                        style="width: 105px;height: 0;">Address:</span> &nbsp;<a id="address" onclick="b()"
+                                        style="height: 0; font-size: medium;text-transform: none; color: black;"><b> {{ house_district }}</b></a></span>
+                                <span style="width: 100%;"><span style="width: 105px; height: 0;">Looking Time:</span> &nbsp;<a
+                                        style="cursor: default; font-size: medium;text-transform: none; color: black;"><b> {{ available_time }}</b></a></span>
+
+
+                            </div>
+
+
+                            <a style="cursor:not-allowed;background-color: #ea5822; color: white;"
+                                    class="c-btn btn-group-sm mt-15">📞 &nbsp;(+86) {{ inspector_phone }}
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="c-btn btn-blue-style mt-15" href="javascript:void(0)"
+                               onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><i
+                                    class="fal fa-clock"></i> &nbsp;Book a time
+                                <i class="far fa-long-arrow-alt-right"></i>
+                            </a>
+
+                            <hr>
+                            {% if rating==-1 %}
+                                <div id="startone" class="block clearfix">
+                                    <div class="star_score"></div>
+                                    <p style="font-size: medium">Rating：<span class="fenshu"></span> &nbsp;
+                                    </p>
+                                    <div class="attitude"></div>
+                                </div>
+                            {% else %}
+                                <ul class="show_number clearfix">
+                                    <li>
+                                        <div class="atar_Show">
+                                            <p tip={{ rating }}></p>
+                                        </div> &nbsp;&nbsp;&nbsp;
+                                        <span style="color: black"></span>
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="light" class="white_content"
+                 style="display: none;position: fixed; top: 15%;left: 23%;width: 55%; height: 75%;padding: 20px;border: 10px solid orange;background-color: white;z-index:1002;overflow: auto;">
+                <h1 style="text-align: center">Contact Agent</h1>
+                <hr>
+                <h4> House Name: {{ house_name }} &nbsp;&nbsp;|&nbsp;&nbsp; House Inspector: {{ inspector_name }}</h4>
+                <form class="subscribe" action="" method="post">
+                    {{ appointment_form.hidden_tag() }}
+                    <div class="input-group date" style="width: 14em; margin-bottom: 10px" id='date'>
+                        {{ appointment_form.time(class="form-control") }}
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    <div class="input-text">
+                        {{ appointment_form.message(cols=30,rows=10) }}
+                    </div>
+                    <div style="text-align: center">
+                        {{ appointment_form.submit(class="c-btn") }} &nbsp;&nbsp;
+                        <a class="c-btn" href="javascript:void(0)"
+                           onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Cancel</a>
+
+                    </div>
+                </form>
+            </div>
+            <div id="fade" class="black_overlay"
+                 style="display: none;position: fixed;top: 0%; left: 0%;width: 100%;height: 100%; background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88);">
+            </div>
+        </div>
+    </section>
+
+    <!-- result-cards-start -->
+    <div class="course-cat-area pt-55 pb-100" style="margin-top: -127px;">
+        <div class="container">
+            <!-- result-num-start -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title text-center mb-60">
+                            <span><i class="fal fa-ellipsis-h"></i>  We recommend houses that are near to this house
+                                <i class="fal fa-ellipsis-h"></i></span>
+                    </div>
+                </div>
+            </div>
+            <!-- result-num-end -->
+
+            <!-- house-result-list-start -->
+            <div class="row">
+                {% for result_house_item in recommendation_house %}
+                    {{ macro.house_item_display(
+                        id=result_house_item.id,
+                        image_url=result_house_item.image_url,
+                        house_name=result_house_item.house_name,
+                        address=result_house_item.address,
+                        price=result_house_item.price,
+                        house_inspector_name=result_house_item.house_inspector_name ) }}
+                {% endfor %}
+            </div>
+            <!-- house-result-list-end -->
+
+        </div>
+    </div>
+    <!-- result-cards-end -->
+
+    <script>
+        function scoreFun(object, opts) {
+            // 默认属性
+            var defaults = {
+                fen_d: 16,  // 每个a的宽度
+                ScoreGrade: 10,  // a的个数
+                types: ["Extremely awful",
+                    "Very unsatisfied",
+                    "So bad",
+                    "Quite awful",
+                    "Not that satisfied",
+                    "Just so so",
+                    "Above the average",
+                    "Good",
+                    "Very good!",
+                    "Excellent!",
+                ],
+                nameScore: "fenshu",
+                parent: "star_score",
+                attitude: "attitude"
+            };
+            options = $.extend({}, defaults, opts);
+            var countScore = object.find("." + options.nameScore);  // 找到名为“fenshu”的类
+            var startParent = object.find("." + options.parent);    // 找到名为“star_score”的类
+            var atti = object.find("." + options.attitude);    // 找到名为“attitude”的类
+            var now_cli;
+            var fen_cli;
+            var atu;
+            var fen_d = options.fen_d;     // 每个a的宽度
+            var len = options.ScoreGrade;  // 把a的个数赋值给len
+            startParent.width(fen_d * len); //包含a的div盒子的宽度
+            var preA = (5 / len);
+            for (var i = 0; i < len; i++) {
+                var newSpan = $("<a href='javascript:void(0)'></a>");     // 不整体刷新页面的情况下，可以使用void(0)
+                newSpan.css({"left": 0, "width": fen_d * (i + 1), "z-index": len - i});  // 设置a的宽度、层级
+                newSpan.appendTo(startParent)
+            }                                    //  把a放到类名为“star_score”的div里
+            startParent.find("a").each(          // each（）方法
+                function (index, element) {
+                    $(this).click(function () {        // 点击事件
+                        if (now_cli >= 0) {
+                            alert("You have already rated!")
+                        } else {
+                            score = show(index, $(this))         //  调用show方法
+                            let hd = $('#house_id').text();
+                            let ht = $('#house_type').text();
+                            var lists = ht + "," + hd + "," + score;
+                            $.ajax({
+                                url: '/score',
+                                type: "post",
+                                data: {'score': lists},
+                                dataType: 'json',
+                                traditional: true,
+                                async: false,
+                                success: function (d) {
+                                    alert("Your rating is: " + d);
+                                    now_cli = index;          // 当前a的索引值
+                                    show(index, $(this));
+                                },
+                                error: function (e) {
+                                    alert("You must login before rating!");
+                                }
+                            });
+                        }
+                    });
+                    $(this).mouseenter(function () {    /* mouseenter事件(与 mouseover 事件不同，只有在鼠标指针穿过被选元素时，
+		  	                                 才会触发 mouseenter 事件。如果鼠标指针穿过任何子元素，同样会触发 mouseover 事件。) */
+                        if (now_cli >= 0) {
+                        } else {
+                            show(index, $(this));
+                        }
+                    });
+                    $(this).mouseleave(function () {    // mouseleave事件
+                        if (now_cli >= 0) {
+                            var scor = preA * (parseInt(now_cli) + 1);         // 评分
+                            startParent.find("a").removeClass("clibg");  // 清除a的“clibg”类
+                            startParent.find("a").eq(now_cli).addClass("clibg"); // eq()选择器，选取索引值为“now_cli”的a，给它加上“clibg”类
+                            var ww = fen_d * (parseInt(now_cli) + 1);                  // 当前a的宽度
+                            startParent.find("a").eq(now_cli).css({"width": ww, "left": "0"});  // 给索引值为“now_cli”的a加上宽度“ww”和left值
+                            if (countScore) {
+                                countScore.text(scor)
+                            }
+                        } else {
+                            startParent.find("a").removeClass("clibg");
+                            if (countScore) {
+                                countScore.text("")
+                            }
+                        }
+                    })
+                });
+
+            // show方法
+            function show(num, obj) {
+                var n = parseInt(num) + 1;
+                var lefta = num * fen_d;
+                var ww = fen_d * n;
+                var scor = preA * n;                        // 评分
+                (len > 5) ? atu = options.types[parseInt(num)] : atu = options.types[parseInt(num) + 10];       // 用户态度
+                object.find("a").removeClass("clibg");  // 清除所有a的“clibg”类
+                obj.addClass("clibg");                  // 给当前a添加“clibg”类
+                obj.css({"width": ww, "left": "0"});       // 给当前a添加宽度“ww”和left值
+                countScore.text(scor);                  // 显示评分
+                atti.text(atu);                        // 显示用户态度
+                return scor;
+            }
+        };
+        scoreFun($("#startone"));
+        //显示分数
+        $(".show_number li p").each(function (index, element) {
+            var num = $(this).attr("tip");
+            var www = num * 2 * 16;//
+            $(this).css("width", www);
+            $(this).parent(".atar_Show").siblings("span").text("Your Rating is: " + num);
+        });
+
+        {#获取今天的日期#}
+        let day = new Date();
+        day.setTime(day.getTime());
+        let s = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+
+        Array.prototype.remove = function (val) {
+            let index = this.indexOf(val);
+            if (index > -1) {
+                this.splice(index, 1);
+            }
+        };
+
+        {#获取可预约星期#}
+        let week = $('#week_number').text();
+        let array = [0, 1, 2, 3, 4, 5, 6];
+        array.remove(parseInt(week))
+
+        {#日历#}
+        $('#date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            defaultDate: s,
+            daysOfWeekDisabled: array
+        });
+
+        {# 显示房屋具体信息 #}
+        function a(){
+            let name = $('#house_name').text();
+            alert(name);
+        }
+        function b(){
+            let add = $('#address').text();
+            alert(add);
+        }
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'back_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block back_end_main_content %}
+    <div id="wrapper">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                {% for customer in customers %}
+                    <div class="col-lg-4">
+                        <div class="contact-box">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <img alt="image" class="img-circle m-t-xs img-responsive"
+                                         src="{{ avatars.gravatar(avatar_hash[loop.index0], default="identicon") }}"
+                                         alt="">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><strong>{{ customer.name }}</strong></h3>
+                                <br>
+                                <h3><i class="fa fa-map-marker"></i>Email: </h3>
+                                <h4>{{ customer.emails }}</h4>
+                                <br>
+                                <h3><i class="fa fa-map-marker"></i>Phone Number:</h3>
+                                <h4>{{ customer.phone }}</h4>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+            <div style="text-align: center;">
+                <ul class="pagination ">
+                    {{ pagination.links }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

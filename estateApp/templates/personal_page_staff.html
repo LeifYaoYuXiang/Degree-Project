@@ -1,0 +1,362 @@
+{% extends 'back_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block back_end_main_content %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="widget style1">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <i class="fa fa-bell fa-5x"></i>
+                            </div>
+                            <div class="col-xs-8 text-right">
+                                <span>Today Appointment</span>
+                                <h2 class="font-bold"><a style="color: #777777" href="{{ url_for('mail_list')}}">{{ today_appointment_number }}</a></h2>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-bell-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Total Appointment</span>
+                            <h2 class="font-bold"><a style="color: white" href="{{ url_for('mail_list')}}">{{ total_appointment_number }}</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-envelope-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Unread Messages </span>
+                            <h2 class="font-bold"><a style="color: white" href="{{ url_for('mail_list')}}">{{ unread_message_number }}</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="widget style1 yellow-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-building fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Published Houses </span>
+                            <h2 class="font-bold"><a style="color: white" href="{{ url_for('house_info_staff')}}">{{ published_house_number }}</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h3>Publish New House</h3>
+                        <b style="color: red">Input Chinese Character Only</b>, the system will convert it into English automatically
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal" method="post" novalidate>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">House Name</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.house_name(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Province</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.province(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">City</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.city(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Room</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.room(id="new_house_room", class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Size</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.size(id="new_house_size", class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Position</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.position(id="new_house_position",class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">District</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.district(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Available Weekday</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.available_weekday(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Start and End Hour</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.start_end_hour(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-solid"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Price Each Square Meter</label>
+                                <div class="col-sm-10">
+                                    {{ publish_new_house_form.price_each_square_meter(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Predicted House Price</label>
+                                <label class="control-label" id="new_house_predicted_house_price"></label>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <input class="btn btn-w-m btn-warning col-sm-2 col-sm-offset-2" type="button" onClick="predict_new_house_price()" value="Predict House" />
+                                <div class="col-sm-6">
+                                   {{ publish_new_house_form.new_house_publish_submit(class="btn btn-primary") }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h3>Publish Second Hand House</h3>
+                        <b style="color: red">Input Chinese Character Only</b>, the system will convert it into English automatically
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">House Name</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.house_name(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Province</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.province(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">City</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.city(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Position</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.position(id='second_hand_house_position', class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Size</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.size(id='second_hand_house_size', class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Room</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.room(id='second_hand_house_room', class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Available Weekday</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.available_weekday(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Start and End Hour</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.start_end_hour(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="hr-line-solid"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Price Each Square Meter</label>
+                                <div class="col-sm-10">
+                                    {{ publish_second_hand_house_form.price_each_square_meter(class="form-control") }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Predicted House Price</label>
+                                <label class="control-label" id="second_hand_house_predicted_house_price"></label>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <input class="btn btn-w-m btn-warning col-sm-2 col-sm-offset-2" type="button" onClick="predict_second_hand_house_price()" value="Predict House" />
+                                <div class="col-sm-6">
+                                    {{ publish_second_hand_house_form.second_hand_house_publish_submit(class="btn btn-primary") }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                function predict_new_house_price(){
+                    let new_house_room = document.getElementById('new_house_room').value
+                    let new_house_size = document.getElementById('new_house_size').value
+                    let new_house_position = document.getElementById('new_house_position').value
+
+                    let room_description = new_house_room.split('-')
+                    let size_description = new_house_room.split('-')
+
+                    send_data = {
+                        'query': 0,
+                        'new_house_position': new_house_position,
+                        'new_house_room': room_description[0],
+                        'new_house_size': size_description[0],
+                    }
+
+                    if (input_house_validation(new_house_room, new_house_size, new_house_position)){
+                        $.ajax({
+                            url: "/house_price_auto",
+                            type: "POST",
+                            data: send_data,
+                            dataType: "json",
+                            success: function (data) {
+                                console.log(data)
+                                if('error' in data){
+                                    document.getElementById("new_house_predicted_house_price").innerHTML = 'Error Prediction'
+                                }else{
+                                    document.getElementById("new_house_predicted_house_price").innerHTML = '￥'+ data['predicted_house_price']
+                                }
+
+                            }
+                        })
+                    }
+                    else {
+                        document.getElementById("new_house_predicted_house_price").innerHTML = 'Error Validation '
+                    }
+                }
+
+                function predict_second_hand_house_price(){
+                    let second_hand_house_room = document.getElementById('second_hand_house_room').value
+                    let second_hand_house_size = document.getElementById('second_hand_house_size').value
+                    let second_hand_house_position = document.getElementById('second_hand_house_position').value
+                    send_data = {
+                        'query': 1,
+                        'new_house_position': second_hand_house_position,
+                        'new_house_room': second_hand_house_room,
+                        'new_house_size': second_hand_house_size,
+                    }
+                    if (input_house_validation(second_hand_house_room, second_hand_house_size, second_hand_house_position)){
+                        $.ajax({
+                            url: "/house_price_auto",
+                            type: "POST",
+                            data: send_data,
+                            dataType: "json",
+                            success: function (data) {
+                                console.log(data)
+                                if('error' in data){
+                                    document.getElementById("second_hand_house_predicted_house_price").innerHTML = 'Error Prediction'
+                                }else{
+                                    document.getElementById("second_hand_house_predicted_house_price").innerHTML = '￥'+ data['predicted_house_price']
+                                }
+
+                            }
+                        })
+                    }else {
+                        document.getElementById("second_hand_house_predicted_house_price").innerHTML = 'Error Validation '
+                    }
+                }
+
+                {#function input_new_house_validation(new_house_room, new_house_size, new_house_position) {#}
+                {#    if (! /^[\u4e00-\u9fa5]+$/.test(new_house_position)) {#}
+                {#        return false#}
+                {#    }#}
+                {#    let room_description = new_house_room.split('-')#}
+                {#    let size_description = new_house_room.split('-')#}
+                {#    if(room_description.length !== 2 || isNaN(room_description[0]) || isNaN(room_description[1])){#}
+                {#        return false#}
+                {#    }#}
+                {#    if(size_description.length !== 2 || isNaN(size_description[0]) || isNaN(size_description[1])){#}
+                {#        return false#}
+                {#    }#}
+                {#    return true#}
+                {##}
+
+                function input_house_validation(second_hand_house_room, second_hand_house_size, second_hand_house_position){
+                    if (! /^[\u4e00-\u9fa5]+$/.test(second_hand_house_position)) {
+                        console.log('POSITION ERROR')
+                        return false
+                    }
+                    if(isNaN(second_hand_house_room)){
+                        return false
+                    }
+                    if(isNaN(second_hand_house_size)){
+                        return false
+                    }
+                    return true
+                }
+            </script>
+        </div>
+    </div>
+{% endblock %}

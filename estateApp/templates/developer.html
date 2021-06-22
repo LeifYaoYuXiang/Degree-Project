@@ -1,0 +1,251 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block front_end_main_content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <section class="page-title-area" style="background-image: url('../static/front_end/img/bg/page-title-bg-01.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 offset-xl-1">
+                    <div class="page-title text-center">
+                        <h1> Developer </h1>
+                        <div class="breadcrumb">
+                            <ul class="breadcrumb-list">
+                                <li><a href="{{ url_for('index') }}">Home <i class="far fa-chevron-right"></i></a></li>
+                                <li><a class="active" href="#">Developer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- events-area-start -->
+    <section class="events-details-area pt-130">
+        <div class="container">
+            <div class="course-cat-area-02 pt-130 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                        <div class="section-title text-center mb-85">
+                            <span><i class="fal fa-ellipsis-h"></i> Why Choose Us? <i class="fal fa-ellipsis-h"></i></span>
+                            <h2>Our Advantages</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters cat-row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="cat-wrapper-02">
+{#                            <div class="course-cat-img">#}
+{#                                <img src="{{ url_for('static', filename='front_end/img/course/c-01.jpg') }}" alt="">#}
+{#                            </div>#}
+                            <div class="course-cat-text course-cat-02-text text-center">
+                                <div class="course-icon mb-25">
+                                    <i class="fal fa-drafting-compass"></i>
+                                </div>
+                                <h4>Massive Unique Data</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="cat-wrapper-02">
+{#                            <div class="course-cat-img">#}
+{#                                <img src="{{ url_for('static', filename='front_end/img/course/c-02.jpg') }}" alt="">#}
+{#                            </div>#}
+                            <div class="course-cat-text course-cat-02-text text-center">
+                                <div class="course-icon mb-25">
+                                    <i class="fal fa-laptop-code"></i>
+                                </div>
+                                <h4>Accurate Prediction</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="cat-wrapper-02">
+{#                            <div class="course-cat-img">#}
+{#                                <img src="{{ url_for('static', filename='front_end/img/course/c-03.jpg') }}" alt="">#}
+{#                            </div>#}
+                            <div class="course-cat-text course-cat-02-text text-center">
+                                <div class="course-icon mb-25">
+                                    <i class="fal fa-usd-circle"></i>
+                                </div>
+                                <h4>Reliable Technology</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="cat-wrapper-02">
+{#                            <div class="course-cat-img">#}
+{#                                <img src="{{ url_for('static', filename='front_end/img/course/c-04.jpg') }}" alt="">#}
+{#                            </div>#}
+                            <div class="course-cat-text course-cat-02-text text-center">
+                                <div class="course-icon mb-25">
+                                    <i class="fal fa-camera-alt"></i>
+                                </div>
+                                <h4>Secure Transmission</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="events-details-wrapper mb-30">
+                        <div class="events-contents-02 mb-35">
+                            <h3>Before You Start</h3>
+                            <div class="row events-meta-box events-details-meta align-items-center">
+                                <div class="col-xl-8 col-lg-8 col-md-12"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-12">
+                                    <ul class="right-tag">
+                                        <li><a class="c-btn" href="{{ url_for('login') }}">Login My Account <i
+                                                class="far fa-long-arrow-alt-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p> Before you use the API provided in this website, <br>you should have one your own
+                                account firstly and have logged in already</p>
+                        </div>
+                        <div class="events-contents-02 mb-35">
+                            <h3>Step One</h3>
+                            <div class="row events-meta-box events-details-meta align-items-center">
+                                <div class="col-xl-8 col-lg-8 col-md-12"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-12">
+                                    <ul class="right-tag">
+                                        <li><a class="c-btn" href="{{ url_for('personal_page') }}">My Personal Page<i
+                                                class="far fa-long-arrow-alt-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p> After you logged in, <br>you can get the token by clicking the button and see your customer id.
+                                <br><b>Remember, the token is always changing</b>.<br>
+                                Each Token's lifetime is <b>One Hour</b>. So you must use it in this time period
+                                otherwise it will be expired.
+                            </p>
+                            <div class="events-thumb mb-35"><img style="width: 30%" src="{{ url_for('static', filename='front_end/img/screenshot.png') }}" alt=""></div>
+                        </div>
+                        <div class="events-contents-02 mb-35">
+                            <h3>Step Two</h3>
+                            <div class="row events-meta-box events-details-meta align-items-center">
+                                <div class="col-xl-8 col-lg-8 col-md-12"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-12"></div>
+                            </div>
+                            <p> The following example code may be helpful.
+                                <br> You can also download this SDK by this <a href="{{ url_for('download_sdk', filename='sdk.zip') }}" style="color: #0c41ff">link</a>
+                            </p>
+                            <h4>Python Code</h4>
+                            <pre><code class="python">
+from urllib import parse
+import requests
+
+url = 'http://127.0.0.1:5000/price_p'
+
+
+# :
+##
+# args:
+#   query: String format, which means that whether the house is one new house or one second-hand house,
+#   0 means it is one new house, 1 means it is one second hand house
+#   address: String format, which means the address which should be in Chinese
+#   room_num: String format, which means the number of rooms
+#   size: String format, which means the size of the house
+##
+# verify user input
+def input_inspect(query, address, room_num, size):
+    if query != '0' and query != '1':
+        return 'The first parameter has a format error'
+    elif isinstance(address, int):
+        return 'The second parameter has a format error'
+    elif not room_num.isdigit():
+        return 'The third parameter has a format error'
+    elif not size.isdigit():
+        return 'The fourth parameter has a format error'
+    else:
+        return True
+
+
+##
+# args
+#   token: the developer's token
+#   user_id: the developer's user_id
+##
+def prediction(query, address, room_num, size, token, user_id):
+    # header
+    headers = {'Content-Type': 'application/x-www-form-urlencoded',
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0'}
+    # parameters
+    if input_inspect(query, address, room_num, size) is True:
+        data = {
+            'user_id': user_id,
+            'query': query,
+            'address': address,
+            'room_num': room_num,
+            'size': size,
+            'token': token,
+        }
+        # encode
+        data = parse.urlencode(data)
+        result = requests.post(url, headers=headers, data=data)
+        print("the prediction result is:", result.text)
+    else:
+        print(input_inspect(query, address, room_num, size))
+
+# one example here
+if __name__ == '__main__':
+    user_id = '5'
+    token = 'MTYxODI5MDE5NS42OTIyMjcxOmIxMzMzYjk5NWM3MjVjMGQ4ZjVlYzVjMmQ4YTM2NDRlMzhjM2M1NGM='
+    prediction('0', '北京市朝阳区北京工业大学', '5', '100', user_id=user_id, token=token)
+                            </code></pre>
+                            <h4>Java</h4>
+                            <pre><code class="java">
+package com.api.utils;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HttpTest {
+    public static String search(String query,String address,String room_num,String size){
+        Map<String , String> params = new HashMap<>();
+        // Request parameters
+        String user_id = "";
+        String token = "";
+
+        params.put("user_id",user_id);
+        params.put("query",query);
+        params.put("address",address);
+        params.put("room_num",room_num);
+        params.put("size",size);
+        params.put("token",token);
+
+        // Send the search user request,
+        // assuming that the returned string result is the above JSON string
+        String result = HttpClientUtil.doPost("http://39.102.48.55:3389/price_p",params);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        house_type = ""
+        house_place = ""
+        house_size = ""
+        house_number = ""
+        String result = HttpTest.search(house_type, house_place, house_size, house_number);
+        System.out.println(result);
+    }
+}
+
+  </code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

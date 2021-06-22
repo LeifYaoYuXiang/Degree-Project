@@ -1,0 +1,109 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block front_end_main_content%}
+
+{#<!-- hero-area start -->#}
+{#    <section class="hero-area pos-rel">#}
+{#        <div class="hero-slider"></div>#}
+{#    </section>#}
+{#<!-- hero-area end -->#}
+{##}
+{#<!-- title-留白-start -->#}
+{#    <section class="grey-bg pt-100"></section>#}
+{#<!-- title-留白-end -->#}
+
+<!--page-title-area start-->
+    <section class="page-title-area" style="background-image: url(../static/front_end/img/bg/01.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <div class="page-title text-center">
+                        <h1>Meet your Agent Here!</h1>
+                        <div class="breadcrumb">
+                            <ul class="breadcrumb-list">
+                                <li><a href="{{ url_for('index') }}">Home <i class="far fa-chevron-right"></i></a></li>
+                                <li><a class="active" href="{{ url_for('house_inspector_list') }}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--page-title-area end-->
+{#    <div class="container white-bg pt-15">#}
+{#        <div class="row">#}
+{#            <div class="col-xl-12">#}
+{#                <div class="widget-search">#}
+{#                    <form class="slider-search-form">#}
+{#                        <input type="text" placeholder="Search Agent Name Here">#}
+{#                        <button type="submit"><i class="far fa-search"></i></button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="widget-search col-xl-3">#}
+{#                    <form class="slider-search-form">#}
+{#                        <input type="text" placeholder="Location">#}
+{#                        <button type="submit"><i class="far fa-search"></i></button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+<!-- team-area-start -->
+    <div class="team-area grey-bg pt-50 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title text-center mb-65">
+                        <span><i class="fal fa-ellipsis-h"></i>
+                            We got you {{ house_inspector_list|length }} house inspectors
+                            <i class="fal fa-ellipsis-h"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                {# 中介信息展示 - 真正数据传入展示 #}
+                {% for house_inspector_item in house_inspector_list %}
+                    {{ macro.house_inspector_display(
+                    id=house_inspector_item.id,
+                    image_url=house_inspector_item.image_url,
+                    name=house_inspector_item.name,
+                    tel=house_inspector_item.tel) }}
+                {% endfor %}
+
+                {# 中介信息展示 - html展示test #}
+{#                <div class="col-xl-3 col-lg-3 col-md-6">#}
+{#                    <div class="team-wrapper mb-30">#}
+{#                        <div class="team-img pos-rel">#}
+{#                            <div class="fix">#}
+{#                                <img src="{{ url_for('static', filename='front_end/img/team/01.jpg') }}" alt="">#}
+{#                            </div>#}
+{#                            <div class="team-02-icon">#}
+{#                                <div class="inner-team-icon pos-rel">#}
+{#                                    <div class="team-icon">#}
+{#                                        <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>#}
+{#                                        <a class="google" href="#"><i class="fab fa-youtube"></i></a>#}
+{#                                        <a class="fb" href="#"><i class="fab fa-facebook-f"></i></a>#}
+{#                                    </div>#}
+{#                                    <a href="#"><i class="fal fa-plus"></i></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="team-text">#}
+{#                            <h4><a href="{{ url_for('house_inspector_item',id='1') }}">Somalia D Silva</a></h4>#}
+{#                            <span>Buyer's agent, Listing agent</span>#}
+{#                            <div class="team-meta">#}
+{#                                <span><i class="far fa-book"></i> 750+ home sold</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+<!-- team-area-end -->
+
+
+{% endblock %}

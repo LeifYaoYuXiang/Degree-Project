@@ -1,0 +1,6 @@
+venv/
+flaskenv/
+__pycache__/
+.idea/
+estateApp/__pycache__
+estateApp/ir/__pycache__

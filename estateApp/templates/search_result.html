@@ -1,0 +1,297 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block front_end_main_content%}
+
+<!-- hero-area start -->
+    <section class="hero-area pos-rel">
+        <div class="hero-slider"></div>
+    </section>
+
+<!-- hero-area end -->
+<!-- title-留白-start -->
+    <section class="white-bg pt-100"></section>
+<!-- title-留白-end -->
+<!-- search-area-start -->
+    <section class="grey-bg pt-25 pb-25">
+        <div class="container">
+            <div class="row pb-15">
+                <div class="col-lg-4" style="margin: 10px -35px 0 25px;">
+                    <div class="search-title">
+                        <h3>More than 4,000 {{ title_content }} in COBE</h3>
+                    </div>
+                </div>
+                <div class="col-lg-9" style="margin: 0 -100px 0 10px">
+                    <div class="search-area">
+                        <form class="slider-search-form" action="" method="post" novalidate>
+                            {{ search_house_form.hidden_tag() }}
+                            {{ search_house_form.house_info(placeholder="Search "+ title_content, id="query", class="col-md-8 nmb", value=search_query) }}
+                            {{ search_house_form.submit(class="btn btn-primary block full-width m-b col-md-2") }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="course-area course-area-02">
+                <!-- filter-start -->
+                <div class="container white-bg pt-15">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="blogs-list-content blogs-list-02">
+                                    <h4>FILTER</h4>
+                                </div>
+{#                            <div class="portfolio-menu portfolio-menu-02 pr-menu-03 text-center mb-30 pr-70 pl-70">#}
+                            <div class="portfolio-menu portfolio-menu-02 pr-menu-03 text-center mb-30 pr-70 pl-70">
+                                    <h5 style="display: inline">Price : </h5>
+                                    {% if filter == "0" or filter == 0 %}
+                                    <button id="f0" class="active" name="all" >Show All</button>
+                                    {% else %}
+                                    <button id="f0" class="" name="all" >Show All</button>
+                                    {% endif %}
+                                    {% if filter == "1" %}
+                                    <button id="f1" class="active" >under 5k</button>
+                                    {% else %}
+                                    <button id="f1" class="" >under 5k</button>
+                                    {% endif %}
+                                    {% if filter == "2" %}
+                                    <button id="f2" class="active" >5k-7.5k</button>
+                                    {% else %}
+                                    <button id="f2" class="" >5k-7.5k</button>
+                                    {% endif %}
+                                    {% if filter == "3" %}
+                                    <button id="f3" class="active" >7.5k-10k</button>
+                                    {% else %}
+                                    <button id="f3" class="" >7.5k-10k</button>
+                                    {% endif %}
+                                    {% if filter == "4" %}
+                                    <button id="f4" class="active" >10k-12.5k</button>
+                                    {% else %}
+                                    <button id="f4" class="" >10k-12.5k</button>
+                                    {% endif %}
+                                    {% if filter == "5" %}
+                                    <button id="f5" class="active" >12.5k-15k</button>
+                                    {% else %}
+                                    <button id="f5" class="" >12.5k-15k</button>
+                                    {% endif %}
+                                    {% if filter == "6" %}
+                                    <button id="f6" class="active" >over 15k</button>
+                                    {% else %}
+                                    <button id="f6" class="" >over 15k</button>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- filter-end -->
+
+                <!-- result-num-end -->
+                <div class="row pt-40 pb-20">
+                    <div class="col-xl-10 col-lg-10 offset-lg-1 offset-xl-1">
+                        <div class="section-title text-center mb-30">
+                            <span style="color: #1d303f">
+                                {{ pagination.info }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- result-num-end -->
+
+                <!-- house-result-list-start -->
+                <div id="portfolio-grid" class="row row-portfolio">
+{#                    {% for result_house_item in result_house_list %}#}
+                    {% for result_house_item in result_house_list[(pagination.page - 1) * pagination.per_page : pagination.page * pagination.per_page ] %}
+    {#                    {{ loop.index + pagination.skip }}#}
+                        {{ macro.house_item_display(
+                            class=result_house_item.class,
+                            id=result_house_item.id,
+                            image_url=result_house_item.image_url,
+                            house_name=result_house_item.house_name,
+                            address=result_house_item.address,
+                            price=result_house_item.price,
+                            house_inspector_name=result_house_item.house_inspector_name ) }}
+                    {% endfor %}
+                </div>
+                <!-- house-result-list-end -->
+
+                <div class="row  white-bg pt-40">
+                   <div class="col-xl-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-0 mb-60">
+                                {{ pagination.links }}
+                            </ul>
+                        </nav>
+                   </div>
+               </div>
+            </div>
+
+        </div>
+        </div>
+
+    </section>
+<!-- search-area end -->
+
+<!-- result-cards-start -->
+{#    <div class="course-cat-area pt-55 pb-50">#}
+{#        <div class="container">#}
+{#        </div>#}
+{#    </div>#}
+<!-- result-cards-end -->
+
+
+
+<!-- JS here -->
+
+
+{#    <script>#}
+{#        function adjust_weight() {#}
+{#            let w = $("#portfolio-grid").last();#}
+{#            console.log(w);#}
+            {#$("#portfolio-grid").css("height",w);#}
+{#        }#}
+{##}
+        {# transform: scale(0.001); transition-property: opacity, transform; transition-duration: 0.4s; transition-delay: 0ms; #}
+{#        function load(value, poi, num){#}
+            {#ajax动态加载#}
+{#            $("#portfolio-grid").append("<div onclick=\"isotope.pkgd.min.js\" class=\"col-xl-3 col-lg-3 col-md-6 "+value["class"]+"\" style=\"position: absolute; left: "+poi+"%; top: "+num+"px;\">\n"+#}
+{#                "        <div class=\"course-cat-wrapper mb-30\">\n" +#}
+{#                "            <div class=\"course-cat-img\">\n" +#}
+{#                "                <a href=\"/house_item/"+value["id"] +"\">\n" +#}
+{#                "                    <img src=\"/static/"+value["image_url"]+"\" alt=\"\">\n" +#}
+{#                "                </a>\n" +#}
+{#                "            </div>\n" +#}
+{#                "            <div class=\"course-cat-text\" style=\"overflow:hidden;white-space:nowrap;text-overflow:ellipsis\">\n" +#}
+{#                "                <h4 style=\"overflow:hidden;white-space:nowrap;text-overflow:ellipsis\"><a href=\"/house_item/"+value["id"] +"\">"+value["house_name"]+"</a></h4>\n" +#}
+{#                "                <p style=\"overflow:hidden;white-space:nowrap;text-overflow:ellipsis\">"+value["address"]+"</p>\n" +#}
+{#                "                <div class=\"course-cat-meta\">\n" +#}
+{#                "                    <span><i class=\"far fa-users\"></i> ￥"+value["price"]+"/㎡</span>\n" +#}
+{#                "                    <span><i class=\"far fa-book\"></i> <a href=\""+value["id"]+"\">"+value["house_inspector_name"]+"</a></span>\n" +#}
+{#                "                </div>\n" +#}
+{#                "            </div>\n" +#}
+{#                "        </div>\n" +#}
+{#                "    </div>")#}
+{#        }#}
+{##}
+{##}
+{#        $(window).scroll(function(){#}
+{#        　　let scrollTop = $(this).scrollTop();#}
+{#        　　let scrollHeight = $(document).height();#}
+{#        　　let windowHeight = $(this).height();#}
+            {#console.log(scrollTop,windowHeight,windowHeight+scrollTop,scrollHeight)#}
+            {#判断滚动条已经到底#}
+{##}
+{##}
+{#            if(scrollTop + windowHeight >= scrollHeight-2){#}
+{#        　　　　$.ajax({#}
+{#                        url: '/search_result_ajax',#}
+{#                        type: "post",#}
+{#                        dataType: 'json',#}
+{#                        async: true,#}
+{#                        success: function (data) {#}
+{#                            let filter = $("button[class='active']").text();#}
+{#                            console.log(filter);#}
+{#                            if(data.length>0 && filter == "Show All"){#}
+{##}
+{#                                let h = $("#portfolio-grid").css("height");#}
+{#                                h = parseFloat(h.substring(0,h.length-2));#}
+{#                                for(let i=0; i<data.length; i++){#}
+{#                                    if(i>=0 && i<4){#}
+{#                                        load(data[i], i%4*25, h);#}
+{#                                    }#}
+{#                                    else{#}
+{#                                        load(data[i], i%4*25, h+394);#}
+{#                                    }#}
+{##}
+{#                                }#}
+                                {#主题拉长#}
+{#                                h = h+394*2;#}
+{##}
+{#                                $("#portfolio-grid").attr("style","position: relative; height:"+ h +"px;");#}
+{#                                }#}
+{##}
+{#                        },#}
+{#                        error: function (e) {#}
+{##}
+{#                        }#}
+{#                    });#}
+{#        　　}#}
+{#        });#}
+{#    </script>#}
+
+    <script src="{{ url_for('static', filename='front_end/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='front_end/js/js_custom/front_end_custom.js') }}"></script>
+    <script>
+        {#$("#query").removeAttr("value");#}
+        let type = {{ types }};
+        let filter = {{ filter }};
+
+
+        $('#f0').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/0";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/0/"+query;
+            }
+        });
+        $('#f1').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/1";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/1/"+query;
+            }
+        });
+        $('#f2').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/2";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/2/"+query;
+            }
+        });
+        $('#f3').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/3";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/3/"+query;
+            }
+        });
+        $('#f4').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/4";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/4/"+query;
+            }
+        });
+        $('#f5').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/5";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/5/"+query;
+            }
+
+        });
+        $('#f6').click(function(){
+            let query = $('#query').val();
+            if(query==""){
+                window.location.href="/search_result/"+type+"/6";
+            }
+            else{
+                window.location.href="/search_result/"+type+"/6/"+query;
+            }
+        });
+
+    </script>
+
+{% endblock %}

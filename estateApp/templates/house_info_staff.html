@@ -1,0 +1,40 @@
+{% extends 'back_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block back_end_main_content %}
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-12 animated fadeInRight">
+                <div class="mail-box-header">
+                    <h2>Published House</h2>
+                    <span>
+                    {{ pagination.info }}
+                </span>
+                </div>
+                <div class="mail-box">
+                    <table class="table table-hover table-mail">
+                        <tbody>
+                        {#                        {% for result_house_item in result_house_list[(pagination.page - 1) * pagination.per_page : pagination.page * pagination.per_page ] %}  #}
+                        {% for each_related_house_info in related_house[(pagination.page - 1) * pagination.per_page : pagination.page * pagination.per_page ] %}
+                            {{ macro.house_info_list(
+                                    type=each_related_house_info.type,
+                                    id=each_related_house_info.id,
+                                    province=each_related_house_info.province,
+                                    city=each_related_house_info.city,
+                                    house_name=each_related_house_info.house_name,
+                                    available_weekday=each_related_house_info.available_weekday,
+                                    available_start_hour=each_related_house_info.available_start_hour,
+                                    available_end_hour=each_related_house_info.available_end_hour) }}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: -40px">
+                    <ul class="pagination ">
+                        {{ pagination.links }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,296 @@
+{% extends 'front_end_base.html' %}
+
+{% block front_end_main_content %}
+
+    <section class="page-title-area" style="background-image: url(../static/front_end/img/bg/01.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <div class="page-title text-center">
+                        <h1>Meet your Agent Here!</h1>
+                        <div class="breadcrumb">
+                            <ul class="breadcrumb-list">
+                                <li><a href="{{ url_for('index') }}">Home <i class="far fa-chevron-right"></i></a></li>
+                                <li><a class="active" href="{{ url_for('house_inspector_list') }}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--faq-area start-->
+    <section class="faq-area grey-bg pt-130 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="authors-03 text-center white-bg mb-30">
+                        <div class="authors-03-thumb mb-30">
+                            <img width="230" height="230" style="border-radius: 50%;"
+                                 src="{{ url_for('static', filename=inspector_img) }}" alt="">
+                        </div>
+                        <div class="authors-03-text">
+                            <h4>{{ inspector_name }}</h4>
+                            <span>Lianjia Company</span>
+                            <p>No sales reported in the last 12 months</p>
+                        </div>
+                    </div>
+                    <div class="subscribe-area white-bg">
+                        <h3>Contact Me</h3>
+                        <form class="subscribe" action="" method="post">
+                            {{ contact_form.hidden_tag() }}
+                            <div class="input-text">
+                                {{ contact_form.content(cols=50,rows=30) }}
+                            </div>
+                            <div class="lg-btn">
+                                {{ contact_form.submit(class="c-btn", style="width: 100%") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xl-8 col-lg-8 col-md-12">
+
+                    <div class="faq-details-area white-bg mb-30">
+                        <h3>About Me</h3>
+                        <div id="accordion">
+                            <div class="card card-02">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                            Real Estate Professional (12 years experience) Specialties
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="mt-15">
+                                            <li>- Consulting</li>
+                                            <li>- Referral</li>
+                                            <li>- Real Estate Secured Notes</li>
+                                            <li>- Property Management</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-02">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                            When working with {{ inspector_name }}, you'll have access to:
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="mt-15">
+                                            <li>- A team of negotiators</li>
+                                            <li>- Professional home inspectors</li>
+                                            <li>- Licensed subcontractors</li>
+                                            <li>- Lenders who can work with many different clients, including
+                                                investors
+                                            </li>
+                                            <li>- Title experts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-02">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                            Buying a Home? {{ inspector_name }} will find you your "Dream Home"
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="mt-15">
+                                            <li>- Providing access to the multiple listing service</li>
+                                            <li>- Sending you properties that meet your criteria immediately as they
+                                                come on the market
+                                            </li>
+                                            <li>- Researching the comparable sales in the area</li>
+                                            <li>- Previewing homes on your behalf</li>
+                                            <li>- Negotiating price</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-02">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseFour" aria-expanded="false"
+                                                aria-controls="collapseFour">
+                                            Selling a Home? {{ inspector_name }} will sell your home fast and will help
+                                            you:
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="mt-15">
+                                            <li>- Research comparable sales in the area of your home to price your home
+                                                accordingly
+                                            </li>
+                                            <li>- Negotiate on your behalf to get you the most money possible</li>
+                                            <li>- Stage the property</li>
+                                            <li>- Create a marketing plan to sell your home for the most money in the
+                                                least amount of time
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-02">
+                                <div class="card-header" id="headingFive">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseFive" aria-expanded="false"
+                                                aria-controls="collapseFive">
+                                            Looking to invest? {{ inspector_name }} has the experience of:
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="mt-15">
+                                            <li>- Working with a Home Vestors franchise in Houston, TX for two years
+                                                wholesaling properties, negotiating short sales, and bird dog for a
+                                                professional real estate investor.
+                                            </li>
+                                            <li>- Working as a property manager for 2 years.</li>
+                                            <li>- Working with multiple real estate investors in Wichita, KS to help
+                                                them build their portfolios.
+                                            </li>
+                                            <li>- Multiple contacts for subcontractors.</li>
+                                            <li>- Analyzing properties to determine the return on investment (ROI) and
+                                                their CAP rate.
+                                            </li>
+                                            <li>- Managing the Wichita Area Real Estate Investors Association.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="achivment-area white-bg mb-30">
+                        <h3>Professional Information</h3>
+                        <p>Call/text {{ inspector_name }} at {{ inspector_phone }} or
+                            email {{ inspector_name }}: {{ inspector_email }}.</p>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="certificate-img"><img
+                                        src="{{ url_for('static', filename='front_end/img/team/c-01.jpg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="certificate-img"><img
+                                        src="{{ url_for('static', filename='front_end/img/team/cr-02.jpg') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="certificate-img"><img
+                                        src="{{ url_for('static', filename='front_end/img/team/cr-03.jpg') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--faq-area end-->
+
+    {#    <!-- course-area-start -->#}
+    <div class="course-area grey-bg pb-100">
+        <div class="courses-bg white-bg">
+            <h3>New Houses that the inspector is responsible for:</h3>
+            <div class="container">
+                <div class="row">
+                    {% for house in houses %}
+                        <div class="col-xl-3 col-lg-3 col-md-6">
+                            <div class="course-cat-wrapper mb-30">
+                                <div class="course-cat-img">
+                                    <a href="{{ url_for('house_item', id='New'~ house.index ~'') }}">
+                                        <img src="{{ url_for('static', filename='image/' ~ (house.index%210) ~ '.jpg') }}">
+                                    </a>
+                                </div>
+                                <div class="course-cat-text">
+                                    <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><a
+                                            href="{{ url_for('house_item', id='New'~ house.index ~'') }}">{{ house.house_name }}</a>
+                                    </h4>
+                                    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ house.position }}</p>
+                                    <div class="course-cat-meta">
+                                        <span><i class="far fa-users"></i> ￥{{ house.price_each_square_meter }}/㎡</span>
+                                        <span><i class="far fa-book"></i>{{ house.city }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="col-xl-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-0 mb-60">
+                                {{ pagination.links }}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <h3>2nd Hand Houses that the inspector is responsible for:</h3>
+            <div class="container">
+                <div class="row">
+                    {% for house in houses2 %}
+                        <div class="col-xl-3 col-lg-3 col-md-6">
+                            <div class="course-cat-wrapper mb-30">
+                                <div class="course-cat-img">
+                                    <a href="{{ url_for('house_item', id='Second'~ house.index ~'') }}">
+                                        <img src="{{ url_for('static', filename='image/' ~ (house.index%210) ~ '.jpg') }}">
+                                    </a>
+                                </div>
+                                <div class="course-cat-text">
+                                    <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><a
+                                            href="{{ url_for('house_item', id='Second'~ house.index ~'') }}">{{ house.house_name }}</a>
+                                    </h4>
+                                    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ house.position }}</p>
+                                    <div class="course-cat-meta">
+                                        <span><i class="far fa-users"></i> ￥{{ house.price_each_square_meter }}/㎡</span>
+                                        <span><i class="far fa-book"></i>{{ house.city }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="col-xl-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-0 mb-60">
+                                {{ pagination2.links }}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

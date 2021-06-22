@@ -1,0 +1,135 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block personal_logout %}
+    <div class="header-sing" style="width: 5px; margin-right: 88px; margin-left: -28px">
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+{% endblock %}
+
+{% block front_end_main_content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <!--page-title-area start-->
+    <section class="page-title-area" style="background-image: url(../static/front_end/img/bg/page-title-bg-01.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="page-title text-center">
+                        <h1>Personal Information</h1>
+                        <div class="breadcrumb">
+                            <ul class="breadcrumb-list">
+                                <li><a href="{{ url_for('index') }}">Home <i class="far fa-chevron-right"></i></a></li>
+                                <li><a class="active" href="#">Personal Info</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--page-title-area end-->
+
+    <!--faq-area start-->
+    <section class="faq-area grey-bg pt-130 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="authors-03 text-center white-bg mb-30">
+                        <div class="authors-03-thumb mb-30">
+                            <img src="{{ personal_img_url }}" alt="">
+                        </div>
+                        <div class="authors-03-text">
+                            <h4>Name: {{ name }}</h4>
+                            <span>Phone: {{ phone }}</span>
+                            <br>
+                            <span>Email: {{ email }}</span>
+                            <br>
+                            <span>ID: {{ user_id }}</span>
+                            <br>
+                            <input class="btn btn-w-m btn-primary" type="button" onClick="copyToken()"
+                                   value="Copy Token"/>
+                            <br>
+                            <br>
+                            <div id="token" style="display: none">{{ token }}</div>
+                        </div>
+{#                        <span><a href="{{ url_for('logout') }}">Log Out</a></span>#}
+                    </div>
+
+{#                    <div class="faq-details-area white-bg mb-30">#}
+{#                        <h3>Messages</h3>#}
+{#                        <div id="accordion">#}
+{#                            {% for each_message in all_message %}#}
+{#                                {{ macro.personal_messages(#}
+{#                                    message_content = each_message.message_content,#}
+{#                                    message_year = each_message.message_year,#}
+{#                                    message_month = each_message.message_month,#}
+{#                                    message_date = each_message.message_date,#}
+{#                                    house_inspector_name = each_message.house_inspector_name,#}
+{#                                    replied_year = each_message.replied_year,#}
+{#                                    replied_month = each_message.replied_month,#}
+{#                                    replied_date = each_message.replied_date,#}
+{#                                    replied_content = each_message.replied_content) }}#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+
+
+                <div class="col-xl-4 col-lg-4 col-md-12 ">
+                    <div class="subscribe-area white-bg">
+                        <h3>Appointments</h3>
+{#                        <form class="subscribe" action="">#}
+                        <hr>
+                            {% for each_appointment in all_appointment %}
+                                {{ macro.personal_appointment_info(house_index=each_appointment.house_index,
+                                appointment_date = each_appointment.appointment_date,
+                                appointment_house = each_appointment.appointment_house,
+                                appointment_content=each_appointment.appointment_content) }}
+                            {% endfor %}
+{#                        </form>#}
+                    </div>
+
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 ">
+                    <div class="faq-details-area white-bg mb-30">
+                        <h3>Messages</h3><hr>
+                        <div id="accordion">
+                            {% for each_message in all_message %}
+                                {{ macro.personal_messages(
+                                    message_content = each_message.message_content,
+                                    message_year = each_message.message_year,
+                                    message_month = each_message.message_month,
+                                    message_date = each_message.message_date,
+                                    house_inspector_name = each_message.house_inspector_name,
+                                    replied_year = each_message.replied_year,
+                                    replied_month = each_message.replied_month,
+                                    replied_date = each_message.replied_date,
+                                    replied_content = each_message.replied_content) }}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function copyToken() {
+            let token = document.getElementById("token").innerText;
+            let oInput = document.createElement('input');
+            oInput.value = token;
+            document.body.appendChild(oInput);
+            oInput.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            oInput.className = 'oInput';
+            oInput.style.display = 'none';
+            alert('copy success!');
+        }
+    </script>
+
+{% endblock %}

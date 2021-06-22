@@ -1,0 +1,278 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+
+{% block front_end_main_content %}
+    <!-- hero-area start -->
+    <section class="hero-area pos-rel">
+        <div class="slider-img d-none d-sm-block">
+            <img class="img-fluid" src="{{ url_for('static', filename='front_end/img/slider/01.png') }}" alt="">
+        </div>
+        <div class="hero-slider">
+            <div class="single-slider slider-height d-flex align-items-center"
+                 data-background="assets/img/slider/01.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-9">
+                            <div class="hero-content mt-80">
+                                <div class="hero-slider-caption">
+                                    <span data-animation="fadeInUp" data-delay=".5s"><i class="fal fa-ellipsis-h"></i>Welcome To COBE</span>
+                                    <h2 class="mb-45" data-animation="fadeInUp" data-delay=".7s">Best Estate Company
+                                        in China</h2>
+                                    <form class="slider-search-form" action="" method="post" novalidate>
+                                        {{ search_house_form.hidden_tag() }}
+                                        {{ search_house_form.house_info() }}
+                                        {{ search_house_form.submit(class="btn btn-primary block full-width m-b") }}
+                                    </form>
+
+                                </div>
+                                <div class="row support-area align-items-center">
+                                    <div class="col-xl-6">
+                                        <p>You can search for information about housing here</p>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="support d-flex align-items-center">
+                                            <div class="support-icon">
+                                                <i class="flaticon-24-hours"></i>
+                                            </div>
+                                            <div class="support-text">
+                                                <span>online support 24hs</span>
+                                                <h6>+012 (345) 6789</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- hero-area end -->
+
+    <!-- 公司简介-->
+    <div class="counter-area pb-100">
+        <div class="container">
+            <div class="counter-bg">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="counter-wrapper mb-30">
+                            <div class="counter-icon f-left">
+                                <i class="fal fa-users"></i>
+                            </div>
+                            <div class="counter-text">
+                                <h1><span class="counter">1000</span>+</h1>
+                                <span>House Inspectors</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="counter-wrapper mb-30">
+                            <div class="counter-icon f-left">
+                                <i class="fal fa-books"></i>
+                            </div>
+                            <div class="counter-text">
+                                <h1><span class="counter">1200</span>+</h1>
+                                <span>Registered Customers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="counter-wrapper mb-30">
+                            <div class="counter-icon f-left">
+                                <i class="fal fa-graduation-cap"></i>
+                            </div>
+                            <div class="counter-text">
+                                <h1><span class="counter">9862</span>+</h1>
+                                <span>New House</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="counter-wrapper mb-30">
+                            <div class="counter-icon f-left">
+                                <i class="fal fa-laptop-code"></i>
+                            </div>
+                            <div class="counter-text">
+                                <h1><span class="counter">8963</span>+</h1>
+                                <span>Second Hand House</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- counter-area-end -->
+
+    <!-- 新房展示 -->
+    <div class="course-cat-area pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title section-title-theme text-center mb-75">
+                        <h3>recommendations of</h3>
+                        <h2>New House</h2>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                {# 新房数据展示 #}
+                {% for new_house_item in new_house_info %}
+                    {{ macro.house_item_display(
+                    id=new_house_item.id,
+                    image_url=new_house_item.image_url,
+                    house_name=new_house_item.house_name,
+                    address=new_house_item.address,
+                    price=new_house_item.price,
+                    user_id=new_house_item.user_id,
+                    house_inspector_name=new_house_item.house_inspector_name ) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- course-cat-area-end -->
+
+    <!-- 二手房展示 -->
+    <div class="course-cat-area pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title section-title-theme text-center mb-75">
+                        <h3>recommendations of</h3>
+                        <h2>Second Hand House</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {# 二手房数据展示 #}
+                {% for second_house_item in second_house_info %}
+                    {{ macro.house_item_display(
+                    id=second_house_item.id,
+                    image_url=second_house_item.image_url,
+                    house_name=second_house_item.house_name,
+                    address=second_house_item.address,
+                    price=second_house_item.price,
+                    user_id=second_house_item.user_id,
+                    house_inspector_name=second_house_item.house_inspector_name
+                    ) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 售房经理展示 -->
+    <div class="team-area grey-bg pt-130 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title text-center mb-65">
+                            <h3><i class="fal fa-ellipsis-h"></i> Find Your Agent Here <i class="fal fa-ellipsis-h"></i></h3>
+                        <h2>House Inspectors</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for house_inspector_item in house_inspector_list %}
+                    {{ macro.house_inspector_display(
+                    id=house_inspector_item.id,
+                    image_url=house_inspector_item.image_url,
+                    name=house_inspector_item.name,
+                    tel=house_inspector_item.phone) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 证言 -->
+    <div class="testimonial-area pt-130 pb-100" data-background="{{ url_for('static', filename='front_end/img/bg/01.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title text-center section-title-white  mb-60">
+                        <h3 style="color: white"><i class="fal fa-ellipsis-h"></i> Customers Feedback <i class="fal fa-ellipsis-h"></i></h3>
+                        <h2>What Our Customers Say</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="testimonial-active">
+                        <div class="testimonial-wrapper mb-30">
+                            <div class="testimonial-text">
+                                    <span>This company is excellent and highly recommended.
+                                        Students who come to Chongqing to buy a house are advised to have a look</span>
+                                <div class="clientsay-name">
+                                    <div class="client-say-img">
+                                        <img src="{{ url_for('static', filename='front_end/img/testimonial/01.png') }}" alt="">
+                                    </div>
+                                    <div class="client-say-content">
+                                        <h4>San Zhang</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-wrapper mb-30">
+                            <div class="testimonial-text">
+                                    <span>Very good! My real estate manager was very enthusiastic and gave me a lot of excellent suggestions</span>
+                                <div class="clientsay-name">
+                                    <div class="client-say-img">
+                                        <img src="{{ url_for('static', filename='front_end/img/testimonial/02.png') }}" alt="">
+                                    </div>
+                                    <div class="client-say-content">
+                                        <h4>Si Li</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-wrapper mb-30">
+                            <div class="testimonial-text">
+                                    <span>I had a very good experience of buying a house in this company. </span>
+                                <div class="clientsay-name">
+                                    <div class="client-say-img">
+                                        <img src="{{ url_for('static', filename='front_end/img/testimonial/03.png') }}" alt="">
+                                    </div>
+                                    <div class="client-say-content">
+                                        <h4>Wu Wang</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="test-img mb-30">
+                        <img src="{{ url_for('static', filename='front_end/img/testimonial/test.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- testimonial-area-end -->
+
+
+<!-- 房屋资讯-->
+    <div class="blog-area pt-130 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
+                    <div class="section-title text-center mb-60">
+                        <h3><i class="fal fa-ellipsis-h"></i> Get House Information Here <i class="fal fa-ellipsis-h"></i></h3>
+                        <h2>Latest House News</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for house_info_item in house_info_list %}
+                    {{ macro.house_list_display(id=house_info_item[1],
+                                                title=house_info_item[2],
+                                                time=house_info_item[3],
+                                                graph=house_info_item[0]) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- blog-area-end -->
+
+{% endblock %}

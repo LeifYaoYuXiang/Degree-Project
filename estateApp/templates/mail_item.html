@@ -1,0 +1,103 @@
+{% extends 'back_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block back_end_main_content %}
+{#    id, buyer_name, message_date, message_month, message_year, buyer_phone, buyer_email, content#}
+    {% if mail_item_display_message %}
+        {{ macro.mail_item_display_message(
+        id=mail_item_display_message.id,
+        buyer_name=mail_item_display_message.buyer_name,
+        message_date=mail_item_display_message.message_date,
+        message_month=mail_item_display_message.message_month,
+        message_year=mail_item_display_message.message_year,
+        buyer_phone=mail_item_display_message.buyer_phone,
+        buyer_email=mail_item_display_message.buyer_email,
+        content=mail_item_display_message.content,
+        status=mail_item_display_message.status) }}
+
+        {% if reply_form %}
+            <div class="wrapper wrapper-content" id="reply_box" style="display:none">
+                <div class="row">
+                    <div class="col-lg-12 animated fadeInRight">
+                        <form class="" action="" method="post" novalidate>
+                            <div class="mail-box-header">
+                                <div class="pull-right tooltip-demo">
+                                    {{ reply_form.hidden_tag() }}
+                                    {{ reply_form.submit(class="btn btn-sm btn-primary") }}
+    {#                                <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</a>#}
+    {#                                <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email" onclick="unshow()"><i class="fa fa-times"></i> Discard</a>#}
+                                </div>
+                                <h2>
+                                    Reply Message
+                                </h2>
+                            </div>
+                            <div class="mail-box" style="height:150px">
+                                <div class="mail-body">
+                                    <div class="form-group">
+                                        {{ reply_form.reply(class="col-sm-10 form-control message-input", style="resize:none;") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12 animated fadeInRight">
+                        <div class="mail-box-header">
+                            <h2>
+                                Replied Message
+                            </h2>
+                            <div class="mail-tools tooltip-demo m-t-md">
+                                <h5>
+                                    <span class="pull-right font-noraml"> {{ mail_item_display_message.replied_date }} / {{ mail_item_display_message.replied_month }} / {{ mail_item_display_message.replied_year }}</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="mail-box">
+                            <div class="mail-body">
+                                <p class="text-navy">
+                                    {{ mail_item_display_message.replied_content }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    {% endif %}
+
+{#    id, buyer_name, appointment_date, appointment_month, appointment_year, buyer_phone, buyer_email, content, house_name, house_province, house_city, house_position, house_index, house_price#}
+    {% if mail_item_display_appointment %}
+        {{ macro.mail_item_display_appointment(
+        id=mail_item_display_appointment.id,
+        buyer_name=mail_item_display_appointment.buyer_name,
+        appointment_date=mail_item_display_appointment.appointment_date,
+        appointment_month=mail_item_display_appointment.appointment_month,
+        appointment_year=mail_item_display_appointment.appointment_year,
+        buyer_phone=mail_item_display_appointment.buyer_phone,
+        buyer_email=mail_item_display_appointment.buyer_email,
+        content=mail_item_display_appointment.content,
+        house_name=mail_item_display_appointment.house_name,
+        house_province=mail_item_display_appointment.house_province,
+        house_city=mail_item_display_appointment.house_city,
+        house_position=mail_item_display_appointment.house_position,
+        house_type=mail_item_display_appointment.house_type,
+        house_index=mail_item_display_appointment.house_index,
+        house_price=mail_item_display_appointment.house_price,
+        read_form=read_form,
+        unread_form=unread_form,
+        status=status
+                ) }}
+    {% endif %}
+
+{#<script>#}
+{#function unshow(){#}
+{#document.getElementById("reply_box").style.display="none";#}
+{#document.getElementById("div2").style.display="none";#}
+{#}#}
+{#</script>#}
+{% endblock %}

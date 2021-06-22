@@ -1,0 +1,81 @@
+{% extends 'front_end_base.html' %}
+{% import 'macro.html' as macro %}
+
+{% block front_end_main_content %}
+
+        <section class="page-title-area" style="background-image: url('../static/front_end/img/bg/page-title-bg-01.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 offset-xl-2">
+                        <div class="page-title text-center">
+                            <h1>News Details</h1>
+                            <div class="breadcrumb">
+                                <ul class="breadcrumb-list">
+                                    <li><a href="{{url_for('index')}}">Home <i class="far fa-chevron-right"></i></a></li>
+                                    <li><a href="{{url_for('house_info_list')}}">News Query<i class="far fa-chevron-right"></i></a></li>
+                                    <li><a class="active" href="#">News Details</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="blog--details-area grey-bg pt-130 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-8">
+
+                        <div class="blogs-details-left-area white-bg">
+                            <div class="blogs pos-rel">
+                                <div class="blog-text">
+                                    <h3>{{title|safe}}</h3>
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar-alt"></i> <a href="">{{time}}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blogs-list-content mb-35">
+                                <p>{{ content|safe }}</p>
+                                <div class="blog-img" style="margin: 30px">
+                                    <p class="text-center"><img  src="{{ random_num }}" alt=""></p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                    {% for house_info_item in house_info_list %}
+                        {{ macro.house_list_display_internal(id=house_info_item[1],
+                                                title=house_info_item[2],
+                                                time=house_info_item[3],
+                                                graph=house_info_item[0]) }}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
